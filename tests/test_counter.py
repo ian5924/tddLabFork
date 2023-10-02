@@ -62,6 +62,13 @@ class CounterTest(TestCase):
         self.assertEqual(getResult.status_code, status.HTTP_200_OK)
         self.assertEqual(b'{"counter_to_be_read":0}\n', getResult.data)
        
+    def test_delete_a_counter(self):
+        """It should delete a counter"""
+        result = self.client.post('/counters/toBeDel')
+        self.assertEqual(result.status_code, status.HTTP_201_CREATED)
+
+        delResult = self.client.delete('/counters/toBeDel')
+        self.assertEqual(delResult.status_code, status.HTTP_204_NO_CONTENT)
 
     def setUp(self):
         self.client = app.test_client()

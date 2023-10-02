@@ -34,5 +34,11 @@ def read_counter(name):
     app.logger.info(f"Request to get counter: {name}")
     if name in COUNTERS:
         return {name: COUNTERS[name]}, status.HTTP_200_OK
-    
 
+@app.route('/counters/<name>', methods=['DELETE'])
+def delete_counter(name):
+    app.logger.info(f"Request to delete counter: {name}")
+    if name in COUNTERS:
+        COUNTERS.pop(name)
+        return {name:name},status.HTTP_204_NO_CONTENT
+        
