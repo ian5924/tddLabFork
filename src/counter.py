@@ -4,6 +4,7 @@ app = Flask(__name__)
 
 from src import status
 
+
 COUNTERS = {}
 
 # We will use the app decorator and create a route called slash counters.
